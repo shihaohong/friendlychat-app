@@ -63,21 +63,18 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                     _isComposing = text.length > 0;
                   });
                 },
-                onSubmitted: _isComposing
-                  ? _handleSubmitted
-                  : null,
-                decoration: new InputDecoration.collapsed(
-                  hintText: "Send a message"
-                ),
+                onSubmitted: _isComposing ? _handleSubmitted : null,
+                decoration:
+                    new InputDecoration.collapsed(hintText: "Send a message"),
               ),
             ),
             new Container(
               margin: new EdgeInsets.symmetric(horizontal: 4.0),
               child: new IconButton(
                 icon: new Icon(Icons.send),
-                onPressed: _isComposing 
-                  ? () => _handleSubmitted(_textController.text)
-                  : null,
+                onPressed: _isComposing
+                    ? () => _handleSubmitted(_textController.text)
+                    : null,
               ),
             ),
           ],
@@ -109,9 +106,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           ),
           new Divider(height: 1.0),
           new Container(
-            decoration: new BoxDecoration(
-              color: Theme.of(context).cardColor
-            ),
+            decoration: new BoxDecoration(color: Theme.of(context).cardColor),
             child: _buildTextComposer(),
           ),
         ],
@@ -129,8 +124,7 @@ class ChatMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new SizeTransition(
       sizeFactor: new CurvedAnimation(
-        parent: animationController, curve: Curves.easeOut
-      ),
+          parent: animationController, curve: Curves.easeOut),
       axisAlignment: 0.0,
       child: new Container(
         margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -141,15 +135,17 @@ class ChatMessage extends StatelessWidget {
               margin: const EdgeInsets.only(right: 16.0),
               child: new CircleAvatar(child: new Text(_name[0])),
             ),
-            new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Text(_name, style: Theme.of(context).textTheme.subhead),
-                new Container(
-                  margin: const EdgeInsets.only(top: 5.0),
-                  child: new Text(text),
-                ),
-              ],
+            new Expanded(
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text(_name, style: Theme.of(context).textTheme.subhead),
+                  new Container(
+                    margin: const EdgeInsets.only(top: 5.0),
+                    child: new Text(text),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
